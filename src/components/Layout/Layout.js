@@ -1,28 +1,15 @@
 import React, { Fragment } from "react"
-import { createGlobalStyle } from 'styled-components';
+import { LeftMenu } from "../LeftMenu/LeftMenu"
+import { TopNav } from "../TopNav/TopNav"
+import { GlobalStyle } from "../GlobalStyle/GlobalStyle"
 
-import Header from "../Header";
-
-const Layout = () => (
+const Layout = (props) => (
   <Fragment>
-    <Normalize />
-    <Header />
+    <GlobalStyle />
+    <LeftMenu />
+    <TopNav />
+    {props.children}
   </Fragment>
-);
+)
 
-const Normalize = createGlobalStyle`
-  *, *::before, *::after {
-    margin: 0;
-    padding: 0;
-  }
-
-  html {
-    font-size: 62.5%;
-  }
-
-  body {
-    margin: 0;
-  }
-`;
-
-export default Layout;
+export default Layout
