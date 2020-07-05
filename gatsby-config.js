@@ -1,8 +1,26 @@
 module.exports = {
   siteMetadata: {
     title: `spotify-remake`,
-    description: `remaking the spotify app on windows, just the look`,
+    description: `remaking the spotify app on cars, just the look`,
     author: `github.com/padunk`,
+    menuLinks: [
+      {
+        name: "home",
+        link: "/",
+      },
+      {
+        name: "podcast",
+        link: "/podcast",
+      },
+      {
+        name: "playlist",
+        link: "/playlist",
+      },
+      {
+        name: "new",
+        link: "/new",
+      },
+    ],
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -31,7 +49,7 @@ module.exports = {
       resolve: `gatsby-plugin-styled-components`,
       options: {
         displayName: true,
-      }
+      },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
