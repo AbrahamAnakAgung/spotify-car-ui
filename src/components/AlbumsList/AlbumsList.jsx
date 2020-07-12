@@ -3,6 +3,8 @@ import styled from "styled-components"
 import { albums, generateAlbumData, COLORS } from "../../constants.js"
 import { Loading } from "../Loading/Loading.jsx"
 import { Error } from "../Error/Error.jsx"
+import { Link } from "gatsby"
+import { convertStringSyntax } from "../../utils/convertStringSyntax.js"
 
 function AlbumsList() {
   const [fetchStatus, setFetchStatus] = React.useState("pending")
@@ -41,15 +43,17 @@ function AlbumsList() {
       ) : (
         localAlbums.map((album, i) => (
           <AlbumDetail key={i}>
-            <ImgWrapper>
-              <img
-                src={album.value.imageSrc}
-                alt="album cover"
-                loading="lazy"
-                width="200"
-                height="200"
-              />
-            </ImgWrapper>
+            <Link to={`/play/${convertStringSyntax(album.value.title, 'dash')}`} state={album}>
+              <ImgWrapper>
+                <img
+                  src={album.value.imageSrc}
+                  alt="album cover"
+                  loading="lazy"
+                  width="200"
+                  height="200"
+                />
+              </ImgWrapper>
+            </Link>
             <div>
               <AlbumTitle>{album.value.title}</AlbumTitle>
               <AlbumArtist>{album.value.artist}</AlbumArtist>
