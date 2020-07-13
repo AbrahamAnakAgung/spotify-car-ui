@@ -1,9 +1,7 @@
-import * as React from 'react';
+import * as React from "react"
 
-function Loading () {
-  return (
-    <div>Loading</div>
-  );
+function Loading() {
+  return <div>Loading</div>
 }
 
-export {Loading};
+export { Loading }

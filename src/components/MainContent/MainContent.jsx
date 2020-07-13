@@ -38,7 +38,7 @@ const RowTitle = styled.div`
   padding-bottom: 2rem;
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     bottom: 1.5rem;
     left: 0;

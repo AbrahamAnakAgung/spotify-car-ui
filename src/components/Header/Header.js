@@ -1,23 +1,23 @@
 // import PropTypes from "prop-types"
 import React from "react"
-import styled from 'styled-components';
+import styled from "styled-components"
 
-import BackAndForward from '../BackAndForward';
-import SearchBar from '../SearchBar';
+import BackAndForward from "../BackAndForward"
+import SearchBar from "../SearchBar"
 
 const Header = () => (
   <OuterWrapper>
-      <BackAndForward />
-      
-      {/*<UserMenu>
+    <BackAndForward />
+
+    {/*<UserMenu>
       
       </UserMenu>*/}
 
-      <SearchBar />
+    <SearchBar />
 
-      {/*<ThreeDotsMenu />      */}
+    {/*<ThreeDotsMenu />      */}
   </OuterWrapper>
-);
+)
 
 const OuterWrapper = styled.div`
   height: 50px;
@@ -29,4 +29,4 @@ const OuterWrapper = styled.div`
   grid-template-rows: auto;
 `
 
-export default Header;
+export default Header
