@@ -7,7 +7,7 @@ export const generateAlbumData = async (artistName, albumName) => {
   let response, data
   try {
     response = await fetch(
-      `${LAST_FM}${process.env.LAST_FM_API_KEY}&artist=${encodeURIComponent(
+      `${LAST_FM}${process.env.GATSBY_LAST_FM_API_KEY}&artist=${encodeURIComponent(
         artistName
       )}&album=${encodeURIComponent(albumName)}&format=json`
     )
