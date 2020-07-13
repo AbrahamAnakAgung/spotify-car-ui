@@ -1,7 +1,7 @@
 // import { LAST_FM_API_KEY } from "./secret.js"
 
 export const LAST_FM =
-  "http://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key="
+  "https://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key="
 
 export const generateAlbumData = async (artistName, albumName) => {
   let response, data
