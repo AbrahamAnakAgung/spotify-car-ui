@@ -293,6 +293,7 @@ const Container = styled.div`
   display: grid;
   place-items: center;
   position: relative;
+  min-height: calc(100vh - 6rem);
 `
 
 const NextTrackTitle = styled.p`
