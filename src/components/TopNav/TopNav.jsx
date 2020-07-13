@@ -21,6 +21,11 @@ function TopNav() {
         <SpotifyNav>
           <SpotifyNavLists>
             <SpotifyNavList>
+              <StyledGatsbyLink to="/new" activeClassName="active">
+                <Icon icon={ic_fiber_new} size="24" />
+              </StyledGatsbyLink>
+            </SpotifyNavList>
+            <SpotifyNavList>
               <StyledGatsbyLink to="/" activeClassName="active">
                 <Icon icon={home} size="24" />
               </StyledGatsbyLink>
@@ -33,11 +38,6 @@ function TopNav() {
             <SpotifyNavList>
               <StyledGatsbyLink to="/playlist" activeClassName="active">
                 <Icon icon={ic_queue_music} size="24" />
-              </StyledGatsbyLink>
-            </SpotifyNavList>
-            <SpotifyNavList>
-              <StyledGatsbyLink to="/new" activeClassName="active">
-                <Icon icon={ic_fiber_new} size="24" />
               </StyledGatsbyLink>
             </SpotifyNavList>
           </SpotifyNavLists>
