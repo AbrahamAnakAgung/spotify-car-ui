@@ -6,6 +6,7 @@ import { musicNote } from "react-icons-kit/ionicons/musicNote"
 import { phone } from "react-icons-kit/fa/phone"
 import { navigate } from "react-icons-kit/ionicons/navigate"
 import { ic_settings } from "react-icons-kit/md/ic_settings"
+import { COLORS } from "../../constants"
 
 function LeftMenu() {
   return (
@@ -35,10 +36,10 @@ function LeftMenu() {
 
 const MainNav = styled.li`
   padding: 2rem;
-  color: gray;
+  color: ${COLORS.gray};
 
   &:nth-child(2) {
-    color: white;
+    color: ${COLORS.white};
   }
 `
 
@@ -51,7 +52,7 @@ const Wrapper = styled.div`
   top: 0;
   left: 0;
   height: 100%;
-  background: #222;
+  background: ${COLORS.blackDark};
   z-index: 999;
 `
 
