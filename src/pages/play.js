@@ -1,8 +1,8 @@
 import React from "react"
 import { Router } from "@reach/router"
 
-import Layout from "../components/layout"
-import SEO from "../components/seo"
+import Layout from "../components/Layout/Layout"
+import SEO from "../components/SEO/SEO"
 import { PlayUI } from "../components/PlayUI/PlayUI"
 
 const Play = props => (
