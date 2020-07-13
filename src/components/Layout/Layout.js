@@ -9,6 +9,7 @@ const Layout = props => (
     <LeftMenu />
     <TopNav />
     {props.children}
+    <p>{process.env.REPOSITORY_URL}</p>
   </Fragment>
 )
 
