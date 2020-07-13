@@ -20,6 +20,7 @@ export const PlayUI = props => {
   const [playingTrack, setPlayingTrack] = React.useState([])
   const [isPlaying, setIsPlaying] = React.useState(false)
   const [nextTrack, setNextTrack] = React.useState("")
+  const [like, setLike] = React.useState(false)
 
   const handleClick = event => {
     const trackData = [
@@ -74,7 +75,10 @@ export const PlayUI = props => {
             </TrackTimeLeft>
           </TrackControlTime>
           <Controller>
-            <IconWrapper>
+            <IconWrapper
+              className={like ? "like" : ""}
+              onClick={() => setLike(!like)}
+            >
               <Icon icon={heart} size="24" />
             </IconWrapper>
             <IconWrapper className="play-pause">
@@ -181,6 +185,10 @@ const IconWrapper = styled.div`
     place-items: center;
     grid-template-columns: 1fr 1fr;
     column-gap: 3rem;
+  }
+
+  &.like {
+    color: indianred;
   }
 `
 
