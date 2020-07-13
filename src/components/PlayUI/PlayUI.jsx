@@ -40,7 +40,7 @@ export const PlayUI = ({ location }) => {
       return
     }
     setAlbum(location.state.value)
-  })
+  }, [location.state.value])
 
   if (!album) {
     return <Loading />
