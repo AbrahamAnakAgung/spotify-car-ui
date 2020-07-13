@@ -142,6 +142,7 @@ export const newData = ["new albums and singles", "music video", "live stream"]
 export const COLORS = {
   white: "#fdfdfd",
   black: "#222",
+  blackDark: "#111",
   blackLight: "#333",
   primary: "rgb(29,185,84)",
   gray: "hsl(188, 5%, 50%)",
