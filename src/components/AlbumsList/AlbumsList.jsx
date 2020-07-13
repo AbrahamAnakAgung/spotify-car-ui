@@ -43,7 +43,10 @@ function AlbumsList() {
       ) : (
         localAlbums.map((album, i) => (
           <AlbumDetail key={i}>
-            <Link to={`/play/${convertStringSyntax(album.value.title, 'dash')}`} state={album}>
+            <Link
+              to={`/play/${convertStringSyntax(album.value.title, "dash")}`}
+              state={album}
+            >
               <ImgWrapper>
                 <img
                   src={album.value.imageSrc}

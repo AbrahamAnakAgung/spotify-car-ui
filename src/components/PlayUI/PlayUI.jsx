@@ -11,10 +11,10 @@ import { heart } from "react-icons-kit/fa/heart"
 import { random } from "react-icons-kit/fa/random"
 import { loop } from "react-icons-kit/iconic/loop"
 import { ic_playlist_add } from "react-icons-kit/md/ic_playlist_add"
+import { Loading } from "../Loading/Loading"
 
-export const PlayUI = props => {
-  const album = props.location.state.value
-  const { artist, imageSrc, title, tracks } = album
+export const PlayUI = ({ location }) => {
+  const [album, setAlbum] = React.useState()
 
   const [playSong, setPlaySong] = React.useState(false)
   const [playingTrack, setPlayingTrack] = React.useState([])
@@ -35,102 +35,114 @@ export const PlayUI = props => {
 
   const playOrPause = event => setIsPlaying(!isPlaying)
 
-  return (
-    <Container>
-      {playSong && nextTrack && (
-        <NextTrackTitle>
-          <span style={{ color: `${COLORS.white}` }}>NEXT:</span>
-          <span>{nextTrack}</span>
-        </NextTrackTitle>
-      )}
-      <AlbumDetail>
-        <ImgWrapper>
-          <img
-            src={imageSrc}
-            alt={`${title} by ${artist}`}
-            loading="lazy"
-            width="200"
-            height="200"
-          />
-        </ImgWrapper>
-        <div>
-          <AlbumTitle>{title}</AlbumTitle>
-          <AlbumArtist>{artist}</AlbumArtist>
-        </div>
-      </AlbumDetail>
+  React.useEffect(() => {
+    if (typeof window === "undefined") {
+      return
+    }
+    setAlbum(location.state.value)
+  })
 
-      {playSong && (
-        <ControlWrapper>
-          <TrackTitle>
-            <PlayingSong>{playingTrack[0]}</PlayingSong>
-            {/* {nextTrack && (
+  if (!album) {
+    return <Loading />
+  } else {
+    let { artist, imageSrc, title, tracks } = album
+    return (
+      <Container>
+        {playSong && nextTrack && (
+          <NextTrackTitle>
+            <span style={{ color: `${COLORS.white}` }}>NEXT:</span>
+            <span>{nextTrack}</span>
+          </NextTrackTitle>
+        )}
+        <AlbumDetail>
+          <ImgWrapper>
+            <img
+              src={imageSrc}
+              alt={`${title} by ${artist}`}
+              loading="lazy"
+              width="200"
+              height="200"
+            />
+          </ImgWrapper>
+          <div>
+            <AlbumTitle>{title}</AlbumTitle>
+            <AlbumArtist>{artist}</AlbumArtist>
+          </div>
+        </AlbumDetail>
+
+        {playSong && (
+          <ControlWrapper>
+            <TrackTitle>
+              <PlayingSong>{playingTrack[0]}</PlayingSong>
+              {/* {nextTrack && (
               <p style={{ color: `${COLORS.gray}` }}>NEXT: {nextTrack}</p>
             )} */}
-          </TrackTitle>
-          <TrackTimeLine />
-          <TrackControlTime>
-            <TrackTimeBegin>0.00</TrackTimeBegin>
-            <TrackTimeLeft>
-              -{convertSecondToMinute(playingTrack[1])}
-            </TrackTimeLeft>
-          </TrackControlTime>
-          <Controller>
-            <IconWrapper
-              className={like ? "like" : ""}
-              onClick={() => setLike(!like)}
-            >
-              <Icon icon={heart} size="24" />
-            </IconWrapper>
-            <IconWrapper className="play-pause">
-              {!isPlaying && (
-                <Icon icon={play} size="48" onClick={playOrPause} />
-              )}
-              {isPlaying && (
-                <Icon icon={pause} size="48" onClick={playOrPause} />
-              )}
-            </IconWrapper>
-            <IconWrapper className="two-icons">
-              <Icon icon={iosSkipbackward} size="32" />
-              <Icon icon={iosSkipforward} size="32" />
-            </IconWrapper>
-            <IconWrapper className="two-icons">
-              <Icon icon={random} size="20" />
-              <Icon icon={loop} size="20" />
-            </IconWrapper>
-            <IconWrapper>
-              <Icon icon={ic_playlist_add} size="32" />
-            </IconWrapper>
-          </Controller>
-        </ControlWrapper>
-      )}
+            </TrackTitle>
+            <TrackTimeLine />
+            <TrackControlTime>
+              <TrackTimeBegin>0.00</TrackTimeBegin>
+              <TrackTimeLeft>
+                -{convertSecondToMinute(playingTrack[1])}
+              </TrackTimeLeft>
+            </TrackControlTime>
+            <Controller>
+              <IconWrapper
+                className={like ? "like" : ""}
+                onClick={() => setLike(!like)}
+              >
+                <Icon icon={heart} size="24" />
+              </IconWrapper>
+              <IconWrapper className="play-pause">
+                {!isPlaying && (
+                  <Icon icon={play} size="48" onClick={playOrPause} />
+                )}
+                {isPlaying && (
+                  <Icon icon={pause} size="48" onClick={playOrPause} />
+                )}
+              </IconWrapper>
+              <IconWrapper className="two-icons">
+                <Icon icon={iosSkipbackward} size="32" />
+                <Icon icon={iosSkipforward} size="32" />
+              </IconWrapper>
+              <IconWrapper className="two-icons">
+                <Icon icon={random} size="20" />
+                <Icon icon={loop} size="20" />
+              </IconWrapper>
+              <IconWrapper>
+                <Icon icon={ic_playlist_add} size="32" />
+              </IconWrapper>
+            </Controller>
+          </ControlWrapper>
+        )}
 
-      <TrackWrapper>
-        <p style={{ color: `${COLORS.grayLight}` }}>SONGS</p>
-        <Line />
-        <ul>
-          {tracks.map((track, idx) => (
-            <TrackDetail
-              key={track["@attr"].rank}
-              onClick={handleClick}
-              data-track-name={track.name}
-              data-track-duration={track.duration}
-              data-next-track-name={
-                idx === tracks.length - 1 ? "" : tracks[idx + 1].name
-              }
-              className={
-                playSong && playingTrack[0] === track.name
-                  ? "active"
-                  : "not-active"
-              }
-            >
-              <TrackName>{track.name} </TrackName>
-              <TrackTime>{convertSecondToMinute(track.duration)}</TrackTime>
-            </TrackDetail>
-          ))}
-        </ul>
-      </TrackWrapper>
-    </Container>
-  )
+        <TrackWrapper>
+          <p style={{ color: `${COLORS.grayLight}` }}>SONGS</p>
+          <Line />
+          <ul>
+            {tracks.map((track, idx) => (
+              <TrackDetail
+                key={track["@attr"].rank}
+                onClick={handleClick}
+                data-track-name={track.name}
+                data-track-duration={track.duration}
+                data-next-track-name={
+                  idx === tracks.length - 1 ? "" : tracks[idx + 1].name
+                }
+                className={
+                  playSong && playingTrack[0] === track.name
+                    ? "active"
+                    : "not-active"
+                }
+              >
+                <TrackName>{track.name} </TrackName>
+                <TrackTime>{convertSecondToMinute(track.duration)}</TrackTime>
+              </TrackDetail>
+            ))}
+          </ul>
+        </TrackWrapper>
+      </Container>
+    )
+  }
 }
 
 const TrackTime = styled.span`
